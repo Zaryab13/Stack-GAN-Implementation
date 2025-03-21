@@ -501,7 +501,7 @@ if __name__ == '__main__':
             gen_losses.append(g_loss)
 
         write_log(summary_writer, 'discriminator_loss', np.mean(dis_losses), epoch)
-        write_log(summary_writer, 'generator_loss', np.mean(gen_losses)[0], epoch)
+        write_log(summary_writer, 'generator_loss', np.mean([loss[0] for loss in gen_losses]), epoch)
 
         if epoch % 2 == 0:
             z_noise2 = np.random.normal(0, 1, size=(batch_size, z_dim))
